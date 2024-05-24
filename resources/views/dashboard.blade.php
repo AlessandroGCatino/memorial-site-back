@@ -17,7 +17,10 @@
                     </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <a href="{{route("artists.index")}}" class="btn btn-primary mb-3 ">Artists List</a>
+                    <a href="{{route("articles.index")}}" class="btn btn-primary mb-3 ">Articles List</a>
+                    <a href="{{route("exhibitions.index")}}" class="btn btn-primary mb-3 ">Exhibitions List</a>
+                    <a href="{{route("sections.index")}}" class="btn btn-primary mb-3 ">Sections List</a>
                 </div>
             </div>
         </div>

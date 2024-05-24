@@ -16,6 +16,7 @@ class Exhibition extends Model
         "title",
         "expositionDates",
         "slug",
+        "show",
         "section_id"
     ];
 

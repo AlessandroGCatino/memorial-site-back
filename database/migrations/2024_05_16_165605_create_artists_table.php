@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("coverImage");
             $table->string("artistName");
-            $table->string("artistDesc");
+            $table->text("artistDesc");
+            $table->string("show")->default("no");
             $table->string("slug");
             
             $table->unsignedBigInteger("exhibition_id")->nullable();

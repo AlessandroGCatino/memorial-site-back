@@ -11,6 +11,7 @@ class Section extends Model
     use HasFactory;
     protected $fillable = [
         "name",
+        "show"
     ];
 
     public function exhibitions(): HasMany{

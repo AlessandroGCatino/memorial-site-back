@@ -13,9 +13,10 @@ class Artist extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "coverImage",
         "artistName",
         "artistDesc",
+        "coverImage",
+        "show",
         "slug",
         "exhibition_id"
     ];

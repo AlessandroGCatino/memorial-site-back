@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->string("expositionDates");
+            $table->string("show")->default("no");
             $table->string("slug");
 
             $table->unsignedBigInteger("section_id")->nullable();

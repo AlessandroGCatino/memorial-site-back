@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->string("operaPicture");
             $table->string("operaName");
             $table->string("operaYear");
             $table->string("operaMaterial");
             $table->text("operaDescription");
+            $table->string("operaPicture");
+            $table->string("show")->default("no");
+
 
             $table->unsignedBigInteger("artist_id")->nullable();
             $table->foreign("artist_id")->references("id")->on("artists")->onDelete("set null");
