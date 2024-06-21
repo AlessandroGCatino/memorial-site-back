@@ -86,7 +86,7 @@
                 @foreach ($artists as $item )
                     <option
                         value="{{$item->id}}"
-                        {{$item->id == old("artist_id") ? "selected" : ""}}
+                        {{$item->artist_id == old("artist_id") ? "selected" : ""}}
                         >{{$item->artistName}}</option>
                 @endforeach
                 
@@ -103,6 +103,10 @@
 
 
             <span>Now assigned: </span>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="yes" id="deleteAll" name="deleteAll"/>
+                <label class="form-check-label" for="deleteAll"> Delete All</label>
+            </div>
             @foreach ($more_images as $index => $image)
                 <div class="col-12 col-sm-10 col-lg-6 col-xxl-4 mb-4 text-center mx-auto" id="image-container-{{ $index }}">
                     <div class="position-relative">

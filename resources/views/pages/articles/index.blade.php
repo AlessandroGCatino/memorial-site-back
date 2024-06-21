@@ -37,7 +37,11 @@
                             
                             <td>{{ Str::limit($item->operaMaterial, 100) }}</td>
                             <td>{{ Str::limit($item->operaDescription, 100) }}</td>
-                            <td>{{ $item->artist->artistName}}</td>
+                            <td> 
+                            @if (isset($item->artist->artistName))
+                                {{ $item->artist->artistName}}
+                            @endif
+                            </td>
                             @if ($item->operaPicture)
                                 <td>
                                     <figure style="width: 100px;">

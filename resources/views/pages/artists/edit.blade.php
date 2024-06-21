@@ -53,7 +53,11 @@
                             <img src="{{ asset('/storage/' . $artist->coverImage) }}" class="img-fluid" alt="{{ $artist->artistName }}" id="old_coverImage" width="150"  />
                         </div>
                     </div>
+                    <input class="form-check-input" type="checkbox" value="yes" id="remove" name="remove"/>
+                    <label class="form-check-label" for="remove"> Remove</label>
                 </div>
+
+
             @else
                 <div class="text-center mt-2"> No pictures selected</div>
             @endif
@@ -70,7 +74,7 @@
                 @foreach ($exhibitions as $item )
                     <option
                         value="{{$item->id}}"
-                        {{$item->id == old("exhibition_id") ? "selected" : ""}}
+                        {{$item->exhibition_id == old("exhibition_id") ? "selected" : ""}}
                         >{{$item->title}}</option>
                 @endforeach
                 
@@ -78,7 +82,7 @@
         </div>
 
         <div class="form-check mt-5 mb-5  ">
-            <input class="form-check-input" type="checkbox" value="yes" id="show" name="show"/>
+            <input class="form-check-input" type="checkbox" value="yes" id="show" name="show" {{ $artist->show == "yes" ? 'checked' : '' }}/>
             <label class="form-check-label" for="show"> Publish (if checked it will be shown on the site)</label>
         </div>
         

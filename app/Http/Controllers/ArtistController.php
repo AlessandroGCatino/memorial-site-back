@@ -98,17 +98,25 @@ class ArtistController extends Controller
             'coverImage' => ['nullable', 'image'],
         ]);
 
-        if($request->hasFile("coverImage")){
+        if ($request->remove){
+            if($artist->coverImage){
+                Storage::delete($artist->coverImage);
+                $request["coverImage"] = "";
+            }
+        } else if($request->hasFile("coverImage")){
             if($artist->coverImage){
                 Storage::delete($artist->coverImage);
             }
             $path = Storage::disk("public")->put("artists_images", $request->coverImage);
 
             $request["coverImage"] = $path;
-            
         }
 
         $validated_data = $request->all();
+
+        if(!$request->show){
+            $validated_data["show"] = "no";
+        }
 
         if($request->hasFile("coverImage")){
             if($artist->coverImage){
@@ -133,6 +141,6 @@ class ArtistController extends Controller
             Storage::delete($artist->coverImage);
         }
         $artist->delete();
-        return redirect()->route('dashboard.artists.index');
+        return redirect()->route('artists.index');
     }
 }

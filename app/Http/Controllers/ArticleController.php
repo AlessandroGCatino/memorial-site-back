@@ -57,6 +57,8 @@ class ArticleController extends Controller
 
         $new_data = $request->all();
 
+        
+
         if($request->hasFile("operaPicture")){
             $path = Storage::disk("public")->put("articles_images", $request->operaPicture);
 
@@ -100,7 +102,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
 
-        $artists = Artist::all();
+        $artists = Artist::where("id", $article->artist_id)->get();;
         $more_images = Picture::where('article_id', $article->id)
             ->get();
 
@@ -138,6 +140,10 @@ class ArticleController extends Controller
 
         $validated_data = $request->all();
 
+        if(!$request->show){
+            $validated_data["show"] = "no";
+        }
+
         if($request->hasFile("operaPicture")){
 
             
@@ -153,9 +159,16 @@ class ArticleController extends Controller
 
         //this handles Multi Images
 
-        $old_images = Picture::where("article_id", $article->id)->get();  
+        $old_images = Picture::where("article_id", $article->id)->get();
 
-        if ($request->has('images')) {
+        if ($request->deleteAll && $old_images){
+            if($old_images){
+                foreach ($old_images as $image) {
+                    Storage::delete($image->singlePicture);
+                    $image->delete();
+                }
+            }
+        } else if ($request->has('images')) {
             if($old_images){
                 foreach ($old_images as $image) {
                     Storage::delete($image->singlePicture);

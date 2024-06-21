@@ -77,6 +77,10 @@ class SectionController extends Controller
 
         $validated_data = $request->all();
 
+        if(!$request->show){
+            $validated_data["show"] = "no";
+        }
+
         $section->update($validated_data);
         return redirect()->route('sections.index');
     }

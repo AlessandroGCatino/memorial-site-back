@@ -26,13 +26,13 @@
                             </td>
                             <td>{{$item->artistDesc}}</td>
                             
+                            <td>
                             @if ($item->coverImage)
-                                <td>
                                     <figure style="width: 100px ;">
                                         <img src="{{ asset('/storage/' . $item->coverImage) }}" alt="" class="img-fluid">
                                     </figure>
-                                </td>
                             @endif
+                            </td>
                             <td class="text-center">
                                 <a href="{{route("artists.edit", $item)}}" class="btn btn-warning mb-1">Edit</a>
                                 <form action="{{route("artists.destroy", $item)}}" method="post">

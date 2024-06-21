@@ -80,10 +80,14 @@ class ExhibitionController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'expositionDates' => ['nullable', 'string', 'max:255']
+            'expositionDates' => ['required', 'string', 'max:255']
         ]);
 
         $validated_data = $request->all();
+
+        if(!$request->show){
+            $validated_data["show"] = "no";
+        }
 
         $exhibition->update($validated_data);
         return redirect()->route('exhibitions.index');

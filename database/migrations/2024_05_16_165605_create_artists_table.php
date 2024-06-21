@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->id();
-            $table->string("coverImage");
+            $table->string("coverImage")->nullable();
             $table->string("artistName");
             $table->text("artistDesc");
             $table->string("show")->default("no");

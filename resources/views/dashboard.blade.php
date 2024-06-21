@@ -17,12 +17,15 @@
                     </div>
                     @endif
 
-                    <a href="{{route("artists.index")}}" class="btn btn-primary mb-3 ">Artists List</a>
                     <a href="{{route("articles.index")}}" class="btn btn-primary mb-3 ">Articles List</a>
+                    <a href="{{route("artists.index")}}" class="btn btn-primary mb-3 ">Artists List</a>
                     <a href="{{route("exhibitions.index")}}" class="btn btn-primary mb-3 ">Exhibitions List</a>
                     <a href="{{route("sections.index")}}" class="btn btn-primary mb-3 ">Sections List</a>
                 </div>
             </div>
+        </div>
+        <div class="p-4">
+            <a href="{{route("tutorials")}}" class="btn btn-warning">Tutorials</a>
         </div>
     </div>
 </div>

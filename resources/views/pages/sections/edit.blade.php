@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-check mt-5 mb-5  ">
-            <input class="form-check-input" type="checkbox" value="yes" id="show" name="show"/>
+            <input class="form-check-input" type="checkbox" value="yes" id="show" name="show" {{ $section->show == "yes" ? 'checked' : '' }}/>
             <label class="form-check-label" for="show"> Publish (if checked it will be shown on the site)</label>
         </div>
     
