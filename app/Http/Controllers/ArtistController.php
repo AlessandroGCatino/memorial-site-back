@@ -71,7 +71,9 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        return view('pages.artists.show', compact('artist'));
+        $articles = Article::where("artist_id", $artist->id)->get();
+
+        return view('pages.artists.show', compact('artist', 'articles'));
 
     }
 

@@ -92,7 +92,10 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('pages.articles.show', compact('article'));
+
+        $artist = Artist::where("id", $article->id)->first();
+
+        return view('pages.articles.show', compact('article', 'artist'));
 
     }
 
