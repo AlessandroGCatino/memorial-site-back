@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Exhibition;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class SectionController extends Controller
         }])
         ->get();
 
-        $openCall = Section::where('name', 'openCall')
+        $openCall = Section::whereRaw('LOWER(name) LIKE ?', ['opencall%'])
         ->with(['exhibitions' => function ($query) {
             $query->with(['artists' => function ($query) {
                 $query->with(['articles' => function ($query) {
@@ -55,8 +56,12 @@ class SectionController extends Controller
         } else {
             return response()->json([
                 "success" => "false",
-                "error" => "Nessun progetto trovato"
+                "error" => "No articles were found"
             ]);
         }
+    }
+
+    public function homePage(){
+        
     }
 }
