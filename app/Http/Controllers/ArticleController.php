@@ -19,8 +19,6 @@ class ArticleController extends Controller
         $artists = Artist::with("articles")->get();
         $exhibitions = Exhibition::with("artists")->get();
         $sections = Section::with("exhibitions")->get();
-
-
         return view('pages.articles.index', compact('articles', "artists", "exhibitions", "sections"));
     }
 

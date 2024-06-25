@@ -39,10 +39,19 @@ class SectionController extends Controller
         }])
         ->first();
 
+        $homePictures = Exhibition::with(['artists.articles' => function ($query) {
+            $query->where('show', "yes");
+        }])
+        ->whereRaw('LOWER(title) LIKE ?', ['%memorial gestures%'])
+        ->where('show', 'yes') // Condizione per il campo "show" dell'exhibition
+        ->orderby('id', 'desc')
+        ->first();
+
         return response()->json([
-            "test" => "true",
+            "homePic" => $homePictures,
             "sections" => $sections,
-            "openCall" => $openCall
+            "openCall" => $openCall,
+            
         ]);
     }
 
@@ -63,5 +72,6 @@ class SectionController extends Controller
 
     public function homePage(){
         
+
     }
 }
