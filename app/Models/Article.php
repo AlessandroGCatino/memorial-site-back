@@ -12,6 +12,7 @@ class Article extends Model
     use HasFactory;
     protected $fillable = [
         "operaName",
+        "slug",
         "operaDescription",
         "operaYear",
         "operaMaterial",
@@ -19,6 +20,14 @@ class Article extends Model
         "operaPicture",
         "artist_id"
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($article) {
+            $article->slug = static::generateSlug($article->operaName);
+        });
+    }
 
     public function artist(): BelongsTo{
         return $this->belongsTo(Artist::class);

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string("operaName");
+            $table->string("slug");
             $table->string("operaYear");
             $table->string("operaMaterial");
             $table->text("operaDescription");

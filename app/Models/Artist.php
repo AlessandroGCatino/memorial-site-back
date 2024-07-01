@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
@@ -34,8 +34,8 @@ class Artist extends Model
         return Str::slug($name, '-');
     }
 
-    public function exhibition(): BelongsTo{
-        return $this->belongsTo(Exhibition::class);
+    public function exhibitions(): BelongsToMany{
+        return $this->belongsToMany(Exhibition::class);
     }
 
     public function articles(): HasMany{
