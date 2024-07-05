@@ -41,7 +41,7 @@ class ExhibitionController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'expositionDates' => ['required','string', 'max:255']
+            'expositionDates' => ["nullable",'string', 'max:255']
         ]);
 
         $new_data = $request->all();
@@ -80,7 +80,7 @@ class ExhibitionController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'expositionDates' => ['required', 'string', 'max:255']
+            'expositionDates' => ["nullable",'string', 'max:255']
         ]);
 
         $validated_data = $request->all();

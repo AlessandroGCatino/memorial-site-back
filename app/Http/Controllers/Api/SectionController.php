@@ -4,17 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Exhibition;
+use App\Models\HomePicture;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
 {
     public function index(){
-
-
-        // $sections = Section::with('exhibitions.artists.articles.pictures')
-        // ->where('show', '!=', 'no')
-        // ->get();
 
         $sections = Section::where('show', '!=', 'no')
         ->with(['exhibitions' => function ($query) {
@@ -39,13 +35,7 @@ class SectionController extends Controller
         }])
         ->first();
 
-        $homePictures = Exhibition::with(['artists.articles' => function ($query) {
-            $query->where('show', "yes");
-        }])
-        ->whereRaw('LOWER(title) LIKE ?', ['%memorial gestures%'])
-        ->where('show', 'yes') // Condizione per il campo "show" dell'exhibition
-        ->orderby('id', 'desc')
-        ->first();
+        $homePictures = HomePicture::all();
 
         return response()->json([
             "homePic" => $homePictures,

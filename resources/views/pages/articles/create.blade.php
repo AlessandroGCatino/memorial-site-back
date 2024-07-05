@@ -44,7 +44,7 @@
 
         <div class="mb-3">
             <label for="operaMaterial" class="form-label">Materials: (insert "none" for the openCalls)</label>
-            <input type="text" class="form-control" name="operaMaterial" id="operaMaterial" maxlength="255"/>
+            <input type="text" required class="form-control" name="operaMaterial" id="operaMaterial" maxlength="255"/>
         </div>
 
 

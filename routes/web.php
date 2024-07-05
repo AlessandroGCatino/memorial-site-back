@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ExhibitionController;
+use App\Http\Controllers\HomePicturesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +42,9 @@ Route::middleware("auth")->group( function(){
     Route::resource("artists", ArtistController::class);
     Route::resource("exhibitions", ExhibitionController::class);
     Route::resource("sections", SectionController::class);
-
+    Route::resource("homepictures", HomePicturesController::class);
 });
+
+
 
 require __DIR__.'/auth.php';

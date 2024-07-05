@@ -9,9 +9,15 @@ use App\Models\Picture;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class ArticleController extends Controller
 {
+
+    public static function generateSlug($name){
+        return Str::slug($name, '-');
+    }
     public function index()
     {
         
@@ -48,7 +54,6 @@ class ArticleController extends Controller
 
         if($request->hasFile("operaPicture")){
             $path = Storage::disk("public")->put("articles_images", $request->operaPicture);
-
             $request["operaPicture"] = $path;
             
         }
@@ -103,7 +108,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
 
-        $artists = Artist::where("id", $article->artist_id)->get();;
+        $artists = Artist::all();
         $more_images = Picture::where('article_id', $article->id)
             ->get();
 
@@ -117,7 +122,7 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         $request->validate([
-            'operaName' => ['required', 'string', 'max:255'],
+            'operaName' => ['nullable', 'string', 'max:255'],
             'operaDescription' => ['nullable', 'string'],
             'operaYear' => ['nullable', 'string', 'max:255'],
             'operaMaterial' => ['nullable', 'string'],
@@ -189,6 +194,11 @@ class ArticleController extends Controller
                     ]);
                 }
             }
+        }
+
+        //edit slug
+        if(isset($request->operaName)){
+            $validated_data['slug'] = Str::slug($request->operaName, '-');
         }
         
         $article->update($validated_data);

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('home_pictures', function (Blueprint $table) {
             $table->id();
-            $table->string("image");
+            $table->string("imagePic");
             $table->string("xAxis");
             $table->string("yAxis");
             $table->string("height");

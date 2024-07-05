@@ -21,6 +21,7 @@
                     <a href="{{route("artists.index")}}" class="btn btn-primary mb-3 ">Artists List</a>
                     <a href="{{route("exhibitions.index")}}" class="btn btn-primary mb-3 ">Exhibitions List</a>
                     <a href="{{route("sections.index")}}" class="btn btn-primary mb-3 ">Sections List</a>
+                    <a href="{{route("homepictures.index")}}" class="btn btn-primary mb-3 ">Homepage Pics List</a>
                 </div>
             </div>
         </div>

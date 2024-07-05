@@ -48,20 +48,24 @@ class ArtistController extends Controller
         if($request->hasFile("coverImage")){
             $path = Storage::disk("public")->put("artists_images", $request->coverImage);
 
-            $request["coverImage"] = $path;
-            
+            $request["coverImage"] = $path; 
         }
 
-        $new_data = $request->all();
+        $new_data = $request->except('exhibition_id');
 
         if($request->hasFile("coverImage")){
             $path = Storage::disk("public")->put("artists_images", $request->coverImage);
 
             $new_data["coverImage"] = $path;
-            
         }
 
         $new_artist = Artist::create($new_data);
+
+        if($request->has('exhibition_id')){
+            $new_artist->exhibitions()->sync($request->exhibition_id);
+        } else {
+            $new_artist->exhibitions()->detach();
+        }
 
         return redirect()->route('artists.index');
     }
@@ -114,7 +118,7 @@ class ArtistController extends Controller
             $request["coverImage"] = $path;
         }
 
-        $validated_data = $request->all();
+        $validated_data = $request->except('exhibition_id');
 
         if(!$request->show){
             $validated_data["show"] = "no";
@@ -128,6 +132,12 @@ class ArtistController extends Controller
 
             $validated_data["coverImage"] = $path;
             
+        }
+
+        if($request->has('exhibition_id')){
+            $artist->exhibitions()->sync($request->exhibition_id);
+        } else {
+            $artist->exhibitions()->detach();
         }
 
         $artist->update($validated_data);

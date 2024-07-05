@@ -18,10 +18,6 @@ return new class extends Migration
             $table->text("artistDesc");
             $table->string("show")->default("no");
             $table->string("slug");
-            
-            $table->unsignedBigInteger("exhibition_id")->nullable();
-            $table->foreign("exhibition_id")->references("id")->on("exhibitions")->onDelete("set null");
-
 
             $table->timestamps();
         });

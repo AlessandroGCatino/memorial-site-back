@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('exhibitions', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->string("expositionDates");
+            $table->string("expositionDates")->nullable();
             $table->string("show")->default("no");
             $table->string("slug");
 

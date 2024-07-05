@@ -66,17 +66,27 @@
         <div class="mb-3">
             <label for="exhibition_id" class="form-label">Exhibition:</label>
             <select
+                multiple
                 class="form-select form-select-lg"
-                name="exhibition_id"
+                name="exhibition_id[]"
                 id="exhibition_id"
             >
                 <option selected disabled value="">Select one</option>
-                @foreach ($exhibitions as $item )
-                    <option
-                        value="{{$item->id}}"
-                        {{$item->exhibition_id == old("exhibition_id") ? "selected" : ""}}
-                        >{{$item->title}}</option>
-                @endforeach
+                @forelse ($exhibitions as $item)
+                    @if ($errors->any())
+                        <option value="{{ $item->id }}"
+                            {{ in_array($item->id, old('exhibitions', [])) ? 'selected' : '' }}>
+                            {{ $item->title }}</option>
+                    @else
+                        <option value="{{ $item->id }}"
+                            {{ $artist->exhibitions->contains($item->id) ? 'selected' : '' }}>
+                            {{ $item->title }}</option>
+                    @endif
+
+                @empty
+
+                    <option value="">No exhibitions</option>
+                @endforelse
                 
             </select>
         </div>
