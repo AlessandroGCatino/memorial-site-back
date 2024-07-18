@@ -8,6 +8,7 @@ use App\Models\Exhibition;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ExhibitionController extends Controller
 {
