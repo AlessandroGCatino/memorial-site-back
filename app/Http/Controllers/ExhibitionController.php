@@ -85,6 +85,10 @@ class ExhibitionController extends Controller
 
         $validated_data = $request->all();
 
+        if(isset($request->title)){
+            $validated_data['slug'] = Str::slug($request->title, '-');
+        }
+
         if(!$request->show){
             $validated_data["show"] = "no";
         }
