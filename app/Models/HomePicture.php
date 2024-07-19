@@ -11,6 +11,8 @@ class HomePicture extends Model
 
     protected $fillable = [
         "imagePic",
+        "videoUrl",
+        "selectedMode",
         "xAxis",
         "yAxis",
         "height",

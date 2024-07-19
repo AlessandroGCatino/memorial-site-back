@@ -5,9 +5,15 @@
     <main class="container ">
         <h1>Actual Image: </h1>
      
-        <figure class="w-25 mx-auto">
-            <img src="{{ asset('/storage/' . $homepicture->imagePic) }}" alt="" class="w-100">
-        </figure>
+        @if (!isset($homepicture->videoUrl))
+            <figure style="width: 100px; margin: 0 auto;">
+                <img src="{{ asset('/storage/' . $homepicture->imagePic) }}" alt="" class="img-fluid">
+            </figure>
+        @else    
+            <div class="d-flex justify-content-center">
+                <iframe width="250" height="200" src="{{ $homepicture->videoUrl }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        @endif
 
         <div class="d-flex flex-wrap mt-3">
             <div class="col-4">

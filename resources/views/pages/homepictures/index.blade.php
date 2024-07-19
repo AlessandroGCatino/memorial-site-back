@@ -14,7 +14,7 @@
             <table class="table table-primary">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center">Image</th>
+                        <th scope="col" class="text-center">Image/Video</th>
                         <th scope="col" class="text-center">Links to</th>
                         <th scope="col" class="text-center">Details</th>
                         <th scope="col" class="text-center">Actions</th>
@@ -26,10 +26,14 @@
                                 error_log($item->id);
                             @endphp
                         <tr>
-                            <td>
-                                <figure style="width: 100px; margin: 0 auto;">
-                                    <img src="{{ asset('/storage/' . $item->imagePic) }}" alt="" class="img-fluid">
-                                </figure>
+                            <td class="d-flex justify-content-center align-items-center">
+                                @if (!isset($item->videoUrl))
+                                    <figure style="width: 100px; margin: 0 auto;">
+                                        <img src="{{ asset('/storage/' . $item->imagePic) }}" alt="" class="img-fluid">
+                                    </figure>
+                                @else    
+                                    <iframe width="250" height="200" src="{{ $item->videoUrl }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                @endif
                             </td>
 
                             <td>

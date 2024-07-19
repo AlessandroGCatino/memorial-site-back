@@ -28,7 +28,9 @@ class HomePicturesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'imagePic' => ['required'],
+            'imagePic' => ['nullable'],
+            'videoUrl' => ['nullable'],
+            'selectedMode' => ['required'],
             'xAxis' => ['required'],
             'yAxis' => ['required'],
             'height' => ['required'],
@@ -79,6 +81,8 @@ class HomePicturesController extends Controller
     {
         $request->validate([
             'imagePic' => ['nullable'],
+            'videoUrl' => ['nullable'],
+            'selectedMode' => ['required'],
             'xAxis' => ['nullable'],
             'yAxis' => ['nullable'],
             'height' => ['nullable'],
@@ -93,6 +97,10 @@ class HomePicturesController extends Controller
             }
             $path = Storage::disk("public")->put("homepage_images", $request->imagePic);
             $request["imagePic"] = $path;
+        }
+
+        if($request->selectedMode == 'image'){
+            $request["videoUrl"] = null;
         }
 
         $validated_data = $request->all();
