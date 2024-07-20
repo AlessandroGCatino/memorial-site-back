@@ -15,6 +15,7 @@ class Article extends Model
     protected $fillable = [
         "operaName",
         "slug",
+        "videoUrl",
         "operaDescription",
         "operaYear",
         "operaMaterial",

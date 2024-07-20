@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Exhibition;
 use App\Models\HomePicture;
 use App\Models\Section;
@@ -37,11 +38,15 @@ class SectionController extends Controller
 
         $homePictures = HomePicture::all();
 
+        $aboutUsPage = Article::where('operaName', 'AboutUs')->get();
+        $HCNPage = Article::where('operaName', 'HolocaustCentreNorth')->get();
+
+
         return response()->json([
             "homePic" => $homePictures,
             "sections" => $sections,
             "openCall" => $openCall,
-            
+            "aboutUsPage" => $aboutUsPage,
         ]);
     }
 

@@ -46,21 +46,36 @@
         </div>
 
         <div class="mb-3">
-            <label for="operaMaterial" class="form-label">Materials:</label>
+            <label for="operaMaterial" class="form-label">Materials: (insert "none" for the openCalls)</label>
             <input type="text" class="form-control" name="operaMaterial" id="operaMaterial" rows="3" maxlength="255" value="{{$article->operaMaterial}}"/>
         </div>
 
 
         <div class="mb-3">
-            <div class="mb-3">
-                <label for="operaPicture" class="form-label">Main image:</label>
-                <input
-                    type="file"
-                    class="form-control"
-                    name="operaPicture"
-                    id="operaPicture"
-                />
-            </div>
+            <div class="mb-3 d-flex justify-content-between">
+                <div class="mb-3 col-5">
+                    <label for="operaPicture" class="form-label">Main image:</label>
+                    <input
+                        type="file"
+                        class="form-control"
+                        name="operaPicture"
+                        id="operaPicture"
+                    />
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="videoUrl" class="form-label">
+                        Video:
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="videoUrl"
+                        id="videoUrl"
+                        value="{{$article->videoUrl}}"
+                    />
+                    <small class="text-muted">Insert the embed code e.g. "https://www.youtube.com/embed/dQw4w9WgXcQ?si=dic6wPdf1-SHva4o"</small>
+                </div>
+            </div> 
             @if ($article->operaPicture)
                 <div class="my-3">
                     <label for="old_operaPicture" class="form-label">Actual picture:</label>
@@ -86,7 +101,7 @@
                 @foreach ($artists as $item )
                     <option
                         value="{{$item->id}}"
-                        {{$item->artist_id == old("artist_id") ? "selected" : ""}}
+                        {{$item->id == $article->artist_id ? "selected" : ""}}
                         >{{$item->artistName}}</option>
                 @endforeach
                 
@@ -95,7 +110,7 @@
 
         <div class="row mt-4" id="moreImagesContainer">
             <div class="mb-3">
-                <label for="operaMaterial" class="form-label">Other images: (select all of them again, in order)</label>
+                <label  class="form-label">Other images: (select all of them again, in order)</label>
                 <input type="file" class="form-control" name="images[]" multiple/>
             </div>
 

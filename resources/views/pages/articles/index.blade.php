@@ -2,7 +2,6 @@
 
 @php
     use Illuminate\Support\Str;
-    // dd($articles);
 @endphp
 
 @section('content')
@@ -11,41 +10,41 @@
 
         <a href="{{route("articles.create")}}" class="btn btn-primary mb-3 ">Create New</a>
 
-        <div class="table-responsive">
+        <div class="table">
             <table class="table table-primary">
                 <thead>
                     <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Year</th>
-                        <th scope="col">Material</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Artist</th>
-                        <th scope="col">Main Picture</th>
-                        <th scope="col">Actions</th>
-                        <th scope="col" class="text-center col-1 ">Public</th>
+                        <th >Title</th>
+                        <th >Year</th>
+                        <th >Material</th>
+                        <th >Description</th>
+                        <th >Artist</th>
+                        <th >Main Picture</th>
+                        <th >Actions</th>
+                        <th class="text-center col-1 ">Public</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($articles as $item)
                         <tr>
-                            <td>
+                            <td >
                                 <a href="{{route("articles.show", $item)}}">{{$item->operaName}}</a>
                             </td>
                             <td>{{$item->operaYear}}</td>
-                            <td>{{ Str::limit($item->operaMaterial, 100) }}</td>
-                            <td>{{ Str::limit($item->operaDescription, 100) }}</td>
+                            <td>{{ Str::limit($item->operaMaterial, 80) }}</td>
+                            <td>{{ Str::limit($item->operaDescription, 80) }}</td>
                             <td> 
                             @if (isset($item->artist->artistName))
                                 {{ $item->artist->artistName}}
                             @endif
                             </td>
-                            @if ($item->operaPicture)
-                                <td>
-                                    <figure style="width: 100px;">
-                                        <img src="{{ asset('/storage/' . $item->operaPicture) }}" alt="" class="img-fluid">
-                                    </figure>
-                                </td>
-                            @endif
+                            <td>
+                                @if ($item->operaPicture)
+                                <figure style="width: 100px;">
+                                    <img src="{{ asset('/storage/' . $item->operaPicture) }}" alt="" class="img-fluid">
+                                </figure>
+                                @endif
+                            </td>
                             <td class="text-center">
                                 <a href="{{route("articles.edit", $item)}}" class="btn btn-warning mb-1">Edit</a>
                                 <!-- button for delete -->

@@ -46,6 +46,7 @@ class ArticleController extends Controller
     {
         $request->validate([
             'operaName' => ['required', 'string', 'max:255'],
+            'videoUrl' => ['nullable', 'string'],
             'operaDescription' => ['nullable', 'string'],
             'operaYear' => ['nullable', 'string', 'max:255'],
             'operaMaterial' => ['nullable', 'string'],
@@ -123,6 +124,7 @@ class ArticleController extends Controller
     {
         $request->validate([
             'operaName' => ['nullable', 'string', 'max:255'],
+            'videoUrl' => ['nullable', 'string'],
             'operaDescription' => ['nullable', 'string'],
             'operaYear' => ['nullable', 'string', 'max:255'],
             'operaMaterial' => ['nullable', 'string'],

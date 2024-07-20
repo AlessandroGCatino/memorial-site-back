@@ -30,7 +30,7 @@
 
         <div class="mb-3">
             <label for="operaDescription" class="form-label">Description:</label>
-            <textarea class="form-control" name="operaDescription" id="operaDescription" rows="3"></textarea>
+            <textarea class="form-control" name="operaDescription" id="operaDescription" rows="3" ></textarea>
         </div>
         
         <div class="mb-3">
@@ -44,12 +44,12 @@
 
         <div class="mb-3">
             <label for="operaMaterial" class="form-label">Materials: (insert "none" for the openCalls)</label>
-            <input type="text" required class="form-control" name="operaMaterial" id="operaMaterial" maxlength="255"/>
+            <input type="text"  class="form-control" name="operaMaterial" id="operaMaterial" maxlength="255"/>
         </div>
 
 
-        <div class="mb-3">
-            <div class="mb-3">
+        <div class="mb-3 d-flex justify-content-between">
+            <div class="mb-3 col-5">
                 <label for="operaPicture" class="form-label">Main image:</label>
                 <input
                     type="file"
@@ -58,10 +58,19 @@
                     id="operaPicture"
                 />
             </div>
-        </div>
-
-        
-        
+            <div class="mb-3 col-6">
+                <label for="videoUrl" class="form-label">
+                    Video:
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="videoUrl"
+                    id="videoUrl"
+                />
+                <small class="text-muted">Insert the embed code e.g. "https://www.youtube.com/embed/dQw4w9WgXcQ?si=dic6wPdf1-SHva4o"</small>
+            </div>
+        </div>        
         
         <div class="mb-3">
             <label for="artist_id" class="form-label">Artist:</label>
