@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('home_pictures', function (Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table) {
+            $table->string("imagePic")->nullable()->change();
             $table->string("videoUrl")->nullable();
+            $table->string("selectedMode")->default('image');
         });
     }
 
@@ -23,6 +25,8 @@ return new class extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->dropColumn("videoUrl");
+            $table->dropColumn("selectedMode");
+            $table->string("imagePic")->nullable(false)->change();
         });
     }
 };

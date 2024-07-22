@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('home_pictures', function (Blueprint $table) {
             $table->id();
-            $table->string("imagePic")->nullable();
-            $table->string("videoUrl")->nullable();
-            $table->string("selectedMode")->default('image');
+            $table->string("imagePic");
             $table->string("xAxis");
             $table->string("yAxis");
             $table->string("height");
