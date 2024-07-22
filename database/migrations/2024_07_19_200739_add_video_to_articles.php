@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('home_pictures', function (Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table) {
             $table->string("videoUrl")->nullable();
         });
     }
