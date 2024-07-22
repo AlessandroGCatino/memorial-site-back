@@ -39,7 +39,6 @@ class SectionController extends Controller
         $homePictures = HomePicture::all();
 
         $aboutUsPage = Article::where('operaName', 'AboutUs')->get();
-        $HCNPage = Article::where('operaName', 'HolocaustCentreNorth')->get();
 
 
         return response()->json([
